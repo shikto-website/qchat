@@ -98,13 +98,14 @@ Quartz.Render([
 console.timeEnd()
 
 var firebaseConfig = {
-    apiKey: "AIzaSyDa4jbrWSE2Af17MASS3SBHfx3snwryw4o",
-    authDomain: "databackup-31218.firebaseapp.com",
-    projectId: "databackup-31218",
-    storageBucket: "databackup-31218.appspot.com",
-    messagingSenderId: "426070003533",
-    appId: "1:426070003533:web:99599c79c6dd7d08d2f104"
-};
+    apiKey: "AIzaSyA8mtd1c4wxjRnikKnLcIIxTNpVAkLJ8dM",
+    authDomain: "qchat-308cc.firebaseapp.com",
+    databaseURL: "https://qchat-308cc-default-rtdb.firebaseio.com",
+    projectId: "qchat-308cc",
+    storageBucket: "qchat-308cc.appspot.com",
+    messagingSenderId: "966004816480",
+    appId: "1:966004816480:web:6271f7a2db8fb9aed0a105"
+  };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
