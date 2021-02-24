@@ -48,7 +48,7 @@ var Quartz = {
             let children = c || [];
             let e = document.getElementById(this.data);
             if(e){
-                UI.Render(children, e);
+                Quartz.Render(children, e);
             }
         }
     },
@@ -63,9 +63,11 @@ var Quartz = {
         }
 
         function addC(c, p) {
-            c.forEach(v => {
+            c.forEach(v => {                
                 if (v && v != undefined && v != null) {
+                    var oldElement = document.getElementById(v.id)
                     p.appendChild(v);
+                                      
                 }
             })
         }
@@ -419,11 +421,11 @@ class Screen{
         App.createdScreens[this.name] = this;
 
         this.Open = function(){
-            UI.Render(this.layout, null, true);
+            Quartz.Render(this.layout, null, true);
             this.onCreate();
         }
         this.Close = function(){
-            UI.Render([], null, true);
+            Quartz.Render([], null, true);
         }
     }       
 }

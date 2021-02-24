@@ -10,6 +10,10 @@ function RawText(prop, child){
     return Quartz.newElement("span", (prop || {}), (child || []))
 }
 
+function RawTextBox(prop, child){
+    return Quartz.newElement("input", (prop || {}), (child || []))
+}
+
 function RawImage(prop, child){
     return Quartz.newElement("img", (prop || {}), (child || []))
 }
@@ -94,6 +98,18 @@ function Text(){
     this.addClasses([])
     return this.render({
         innerHTML: this.text,
+        ...this.properties
+    });
+}
+
+function TextBox(){
+    Quartz.newComponent(this, (prop)=>{
+        return RawTextBox({
+            ...prop
+        }, this.children)
+    })
+    this.addClasses(["textbox"])
+    return this.render({
         ...this.properties
     });
 }
@@ -247,7 +263,7 @@ function CenterBox(){
 function Avatar(){
     Quartz.newComponent(this, (prop)=>{
         return Circle({
-            padding: prop.size * 0.2 || 10,
+            padding: prop.size * 0,
             ...prop
         },[
             StrechBox([
@@ -263,5 +279,119 @@ function Avatar(){
         ...this.properties
     });
 }
+
+function ChatInterphase(){
+    Quartz.newComponent(this, (prop)=>{
+        return (
+            Container({
+                classNames:["scroll-v"],
+                size:["fill", "fill"], 
+                align:"end",
+                id: this.id + "_messageBox"
+            },[
+                Container({
+                    classNames:["animation-smoothWidth"]
+                },[
+                    
+                ]),
+                
+            ])
+        )
+    })
+    var chatboxID = this.id + "_messageBox";
+    this.msgIDCount = 0;
+    this.allMessages = {};
+    this.addMessage = function (msgData){
+        this.msgIDCount++;
+        var newMsgID = msgData.id || this.msgIDCount + "";
+        console.log(newMsgID)
+        var newMsgElement = (
+            Row({
+                align:"start", 
+                width:"fill",
+                padding:[0,5,0,5]
+            },(
+                ChatMessageTemplate({
+                    message: msgData.message || "This is a sample message",
+                    type: msgData.type || "text",
+                    senderName: msgData.senderName || "Sender",
+                    senderAvatar: msgData.senderAvatar || "https://microsoft.com/favicon.ico",
+                    timestamp: msgData.timestamp || 1500000,
+                    meSender: msgData.meSender || false
+                })          
+            ))            
+        )
+
+        if(allMessages[newMsgID]){
+            console.log("oldmsg", $$(newMsgID).Element)
+            $$(newMsgID).Element.innerHTML = newMsgElement.innerHTML
+        }else{
+            newMsgElement.id = newMsgID
+            this.allMessages[newMsgID] = (
+                newMsgElement
+            )
+            $$(chatboxID).addChildren([
+                newMsgElement
+            ])
+            newMsgElement.scrollIntoView({ block: 'end',  behavior: 'smooth' })
+        }
+
+        //$$(newMsgID).Element.scrollIntoView(false)
+    }
+    return this.render({
+        ...this.properties
+    });
+}
+
+function ChatMessageTemplate({message, type, id, senderName, senderAvatar, timestamp, meSender}){
+    var msgBody;
+    if(type == "text"){
+        msgBody = (
+            Text({text:replaceAll(message, "\n", "<br />")})
+        )
+    }else if(type == "image"){
+        msgBody = (
+            Image({src:message})
+        )
+    }
+
+    return (
+        (
+            (()=>{
+                if(!meSender){
+                    return [
+                        Avatar({size:30, src:senderAvatar}),
+                        Card({
+                            borderRadius:10,
+                            backgroundColor:Colors.light_blue  ,
+                            textColor:Colors.white,    
+                            maxSize:[null, "70%"]            
+                        }, [msgBody])
+                    ]
+                }else{
+                    return [
+                        FlexibleBox({
+                        }),
+                        Card({
+                            borderRadius:10,
+                            backgroundColor:Colors.white  ,
+                            textColor:Colors.black,    
+                            maxSize:[null, "70%"]          
+                        }, [
+                            Column({
+                                crossAlign:"end"
+                            },[
+                                msgBody,
+                                Text({text:"/"})
+                            ])
+                        ])
+                    ]
+                }
+            })()            
+        )
+    )
+}
+
+
 
 

@@ -10,6 +10,16 @@ div{
   box-sizing: border-box;
 }
 
+input{
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.textbox{
+  border-radius: 5px;
+  border: 0;
+}
+
 body{
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
@@ -75,6 +85,7 @@ body{
 .avatar img{
   height: 100%;
   width: 100%;
+  border-radius: 50%;
 }
 
 .avatar_button button{
