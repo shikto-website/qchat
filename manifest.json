@@ -6,6 +6,11 @@
       "src": "/asset/image/favicon.png",
       "type": "image/png",
       "sizes": "144x144"
+    },
+    {
+      "src": "/asset/image/favicon-240.png",
+      "type": "image/png",
+      "sizes": "240x240"
     }
   ],
   "start_url": "/?pwa=true",
