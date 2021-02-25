@@ -3,17 +3,17 @@
   "name": "Quartz Chat, By SHIKTO",
   "icons": [
     {
-      "src": "/asset/image/favicon.png",
+      "src": "/qchat/asset/image/favicon.png",
       "type": "image/png",
       "sizes": "144x144"
     },
     {
-      "src": "/asset/image/favicon-240.png",
+      "src": "/qchat/asset/image/favicon-240.png",
       "type": "image/png",
       "sizes": "240x240"
     },
     {
-      "src": "/asset/image/favicon-512.png",
+      "src": "/qchat/asset/image/favicon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -21,7 +21,7 @@
   "start_url": "/?pwa=true",
   "background_color": "#3367D6",
   "display": "standalone",
-  "scope": "/qchat",
+  "scope": "/",
   "theme_color": "#3367D6",
   "description": "Quartz Chat, By SHIKTO"
 }
