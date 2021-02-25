@@ -3,7 +3,7 @@
 window.addEventListener("load", async function () {
     await caches.delete("static");
     navigator.serviceWorker
-        .register("/background.js")
+        .register("/qchat/background.js")
         .then(res => console.log("service worker registered"))
         .catch(err => console.log("service worker not registered", err))
     console.timeEnd("appLoadTime")
