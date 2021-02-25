@@ -11,6 +11,11 @@
       "src": "/asset/image/favicon-240.png",
       "type": "image/png",
       "sizes": "240x240"
+    },
+    {
+      "src": "/asset/image/favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "/?pwa=true",
