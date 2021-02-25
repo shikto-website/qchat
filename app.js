@@ -45,6 +45,22 @@ var loginScreen = new Screen("loginScreen", layout.loginScreen, async (data)=>{
             chatRoomScreen.Open()
         }
     }
+
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent the mini-infobar from appearing on mobile
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        // Update UI notify the user they can install the PWA
+        // Optionally, send analytics event that PWA install promo was shown.
+        console.log(`'beforeinstallprompt' event was fired.`);
+    });
+
+    $$("installAppButton").Element.onclick = async ()=>{
+        deferredPrompt.prompt();
+    }
 })
 
 var chatRoomScreen = new Screen("chatRoomScreen", layout.chatRoomScreen, async()=>{
