@@ -16,6 +16,18 @@ function replaceAll(text, from, to) {
     }    
 }
 
+function Query(s){
+    var u = s || window.location;
+    return (new URL(u).search).toString().slice(1)
+    .split('&')
+    .reduce(function _reduce (/*Object*/ a, /*String*/ b) {
+    b = b.split('=');
+    a[b[0]] = decodeURIComponent(b[1]);
+    return a;
+    }, {});
+}
+
+
 var Quartz = {
     ID(id){
         function regenID(id_) {
