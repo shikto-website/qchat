@@ -2,10 +2,9 @@
 
 window.addEventListener("load", function () {
     navigator.serviceWorker
-        .register("/qchat/background.js")
+        .register("./background.js")
         .then(res => console.log("service worker registered"))
         .catch(err => console.log("service worker not registered", err))
-    console.timeEnd("appLoadTime")
 })
 
 console.log(Query())
@@ -21,9 +20,12 @@ var firebaseConfig = {
     messagingSenderId: "966004816480",
     appId: "1:966004816480:web:6271f7a2db8fb9aed0a105"
 };
-firebase.initializeApp(firebaseConfig);
-var provider = new firebase.auth.GoogleAuthProvider();
-var database = firebase.database();
+
+if(window.navigator.onLine){
+    firebase.initializeApp(firebaseConfig);
+    var provider = new firebase.auth.GoogleAuthProvider();
+    var database = firebase.database();
+}
 
 //------------------------------------------------------------------------------
 

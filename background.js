@@ -1,33 +1,32 @@
-var staticFilesURL = [
-    "/",
-    "index.html",
-    
-    "manifest.json",
-    "asset/image/favicon.png",,
-    "asset/image/favicon-240.png",,
-    "asset/image/favicon-512.png",
-    
-    "Quartz/ui.css",
-    "Quartz/animations.css",
-
-    "Quartz/colors.js",
-    "Quartz/quartz.css",
-    "Quartz/UI.css",
-
-    "asset/firebase-app.js",
-    "asset/firebase-storage.js",
-    "asset/firebase-auth.js",
-    "asset/firebase-database.js",
-
-    "asset/image/google.png",
-    "asset/layout.js",
-    "app.js"
-]
-
 self.addEventListener("install", e => {
     e.waitUntil(
         caches.open("static").then(cache => {
-            return cache.addAll(staticFilesURL);
+            return cache.addAll([
+              "./",
+              "./?pwa=true",
+              "./index.html",
+
+              "./manifest.json",
+              "./asset/image/favicon.png",
+              "./asset/image/favicon-240.png",
+              "./asset/image/favicon-512.png",
+
+              "./Quartz/ui.css",
+              "./Quartz/animations.css",
+
+              "./Quartz/colors.js",
+              "./Quartz/quartz.js",
+              "./Quartz/UI.js",
+
+              "./asset/firebase-app.js",
+              "./asset/firebase-storage.js",
+              "./asset/firebase-auth.js",
+              "./asset/firebase-database.js",
+
+              "./asset/image/google.png",
+              "./asset/layout.js",
+              "./app.js"
+            ]);
         })
     );
 });
