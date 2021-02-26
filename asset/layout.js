@@ -1,11 +1,12 @@
 var layout = {
     loginScreen:[
         Container({
-            size:[200,200]
+            
         },[
             Column([
                 Image({
-                    src:"asset/image/favicon.png"
+                    src:"asset/image/favicon.png",
+                    size:[200,200]
                 }),
                 BigText({
                     text:"Quartz Chat",
