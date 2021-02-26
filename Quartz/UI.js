@@ -324,7 +324,8 @@ function ChatInterphase(){
                     senderName: msgData.senderName || "Sender",
                     senderAvatar: msgData.senderAvatar || "https://microsoft.com/favicon.ico",
                     timestamp: msgData.timestamp || 1500000,
-                    meSender: msgData.meSender || false
+                    meSender: msgData.meSender || false,
+                    sent: msgData.sent
                 })          
             ))            
         )
