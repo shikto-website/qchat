@@ -8,7 +8,6 @@ self.addEventListener("install", e => {
 
               "./manifest.json",
               "./asset/image/favicon.png",
-              "./asset/image/favicon-240.png",
               "./asset/image/favicon-512.png",
 
               "./Quartz/ui.css",
