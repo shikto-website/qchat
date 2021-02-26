@@ -77,7 +77,7 @@ var chatRoomScreen = new Screen("chatRoomScreen", layout.chatRoomScreen, async()
             id: k,
             ...v,
             meSender: (v.senderEmail == user.email),
-            sent:false
+            sent:true
         })
     }  
   
@@ -88,7 +88,16 @@ var chatRoomScreen = new Screen("chatRoomScreen", layout.chatRoomScreen, async()
     
     $$("sendMessageButton").Element.onclick = ()=>{
         if($$("textBox").Element.value != ""){
-            firebase.database().ref('global/' + replaceAll((user.email || ""), ".", "(dot)") + Date.now()).set({
+            var kk = replaceAll((user.email || ""), ".", "(dot)") + Date.now();
+            UI.chatBox.addMessage({
+                id: kk,
+                message:$$("textBox").Element.value,
+                meSender: true,
+                senderAvatar: user.avatar || "",
+                senderEmail: user.email
+            })
+            
+            firebase.database().ref('global/' + kk).set({
                 message: $$("textBox").Element.value,
                 timestamp: Date.now(),
                 senderAvatar:user.avatar || "",
