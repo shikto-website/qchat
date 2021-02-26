@@ -3,18 +3,6 @@
   "name": "Quartz Chat, By SHIKTO",
   "icons": [
     {
-      "src": "./asset/image/favicon.png",
-      "type": "image/png",
-      "sizes": "144x144",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "./asset/image/favicon-240.png",
-      "type": "image/png",
-      "sizes": "240x240",
-      "purpose": "any maskable"
-    },
-    {
       "src": "./asset/image/favicon-512.png",
       "type": "image/png",
       "sizes": "512x512",
