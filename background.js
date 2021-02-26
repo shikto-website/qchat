@@ -1,7 +1,12 @@
 var staticFilesURL = [
-    "./",
+    "/",
     "index.html",
-
+    
+    "manifest.json",
+    "asset/image/favicon.png",,
+    "asset/image/favicon-240.png",,
+    "asset/image/favicon-512.png",
+    
     "Quartz/ui.css",
     "Quartz/animations.css",
 
@@ -22,7 +27,7 @@ var staticFilesURL = [
 self.addEventListener("install", e => {
     e.waitUntil(
         caches.open("static").then(cache => {
-            return cache.addAll([]);
+            return cache.addAll(staticFilesURL);
         })
     );
 });
