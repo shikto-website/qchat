@@ -1,6 +1,6 @@
 {
   "short_name": "Quartz Chat",
-  "name": "Quartz Chat, By SHIKTO",
+  "name": "Quartz Chat",
   "icons": [
     {
       "src": "./asset/image/favicon-512.png",
@@ -14,5 +14,5 @@
   "display": "standalone",
   "scope": "./",
   "theme_color": "#3367D6",
-  "description": "Quartz Chat, By SHIKTO"
+  "description": "Quartz Chat"
 }

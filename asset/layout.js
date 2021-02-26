@@ -1,5 +1,19 @@
 var layout = {
     loginScreen:[
+        Container({
+            width: 200
+        },[
+            Column([
+                Image({
+                    src:"asset/image/favicon.png"
+                }),
+                BigText({
+                    text:"Quartz Chat",
+                    textStyle:"bold"
+                }),
+                Container({size:[20,20]})
+            ])
+        ]),
         Button({text:"", id:"googleLoginButton"},[
             Row([
                 Container({
@@ -28,7 +42,7 @@ var layout = {
                     Button({text:"", id:"installAppButton", backgroundColor:Colors.white},[
                         Row([
                             Container({
-                                size:[50,50],
+                                size:[40,40],
                                 backgroundColor:Colors.white
                             },[                
                                 Image({
@@ -47,7 +61,10 @@ var layout = {
                     ])
                 )
             }
-        })()
+        })(),
+        
+        Container({size:[20,20]}),
+        SmallText({textStyle:"bold", text:"Developed by SHIKTO"})
     ],
 
     chatRoomScreen:[
