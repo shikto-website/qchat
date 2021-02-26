@@ -1,6 +1,6 @@
 
 
-window.addEventListener("load", async function () {
+window.addEventListener("load", function () {
     navigator.serviceWorker
         .register("/qchat/background.js")
         .then(res => console.log("service worker registered"))
