@@ -389,8 +389,7 @@ function ChatMessageTemplate({message, type, id, senderName, senderAvatar, times
                             Column({
                                 crossAlign:"end"
                             },[
-                                msgBody,
-                                Text({text:(sent ? "✅" : "☑")})
+                                msgBody
                             ])
                         ])
                     ]
