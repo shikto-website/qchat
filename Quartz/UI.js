@@ -298,6 +298,14 @@ function ChatInterphase(){
             ])
         )
     })
+    
+    this.lastMsgEle;
+    this.scroll = ()=>{
+        if(this.lastMsgEle &&  this.lastMsgEle != null){
+            this.lastMsgEle.scrollIntoView({ block: 'end',  behavior: 'smooth' })        
+        }
+    }
+  
     var chatboxID = this.id + "_messageBox";
     this.msgIDCount = 0;
     this.allMessages = {};
@@ -333,6 +341,7 @@ function ChatInterphase(){
             $$(chatboxID).addChildren([
                 newMsgElement
             ])
+            this.lastMsgEle = newMsgElement;
             newMsgElement.scrollIntoView({ block: 'end',  behavior: 'smooth' })
         }
 

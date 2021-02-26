@@ -13,6 +13,7 @@ var layout = {
                 ]),
                 Container({size:[10,20]}),
                 Text({
+                    id:"loginButtonText",
                     text:"Continue with Google",
                     textStyle:"bold",
                     textSize:18

@@ -7,10 +7,6 @@ window.addEventListener("load", function () {
         .catch(err => console.log("service worker not registered", err))
 })
 
-console.log(Query())
-
-console.time();
-
 var firebaseConfig = {
     apiKey: "AIzaSyA8mtd1c4wxjRnikKnLcIIxTNpVAkLJ8dM",
     authDomain: "qchat-308cc.firebaseapp.com",
@@ -29,12 +25,12 @@ if(window.navigator.onLine){
 
 //------------------------------------------------------------------------------
 
-var user = {
-
-}
+var user = {}
 
 var loginScreen = new Screen("loginScreen", layout.loginScreen, async (data)=>{
     $$("googleLoginButton").Element.onclick = async ()=>{
+        $$("loginButtonText").Element.innerHTML = "Please wait";
+      
         var result = await googleLogin()
         console.log(result)
 
@@ -42,7 +38,9 @@ var loginScreen = new Screen("loginScreen", layout.loginScreen, async (data)=>{
             user.avatar = result.user.photoURL
             user.name = result.user.displayName
             user.email = result.user.email
-
+            
+            window.localStorage.setItem("user", JSON.stringify(user))
+          
             chatRoomScreen.Open()
         }
     }
@@ -78,6 +76,10 @@ var chatRoomScreen = new Screen("chatRoomScreen", layout.chatRoomScreen, async()
         })
         
     })
+  
+    $$("textBox").Element.onfocus = ()=>{
+        UI.chatBox.scroll();
+    }
     
     $$("sendMessageButton").Element.onclick = ()=>{
         if($$("textBox").Element.value != ""){
@@ -88,12 +90,18 @@ var chatRoomScreen = new Screen("chatRoomScreen", layout.chatRoomScreen, async()
                 senderEmail: user.email
            })
            $$("textBox").Element.value = "" 
+           $$("textBox").Element.focus
         }
     }
 })
 
-
-loginScreen.Open()
+var savedUser = window.localStorage.getItem("user")
+if(!savedUser || savedUser == {}){
+    loginScreen.Open()
+}else{
+    user = JSON.parse(savedUser)
+    chatRoomScreen.Open()
+}
 //chatRoomScreen.Open()
 
 function googleLogin(){
