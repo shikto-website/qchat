@@ -312,7 +312,6 @@ function ChatInterphase(){
     this.addMessage = function (msgData){
         this.msgIDCount++;
         var newMsgID = msgData.id || this.msgIDCount + "";
-        console.log(newMsgID)
         var newMsgElement = (
             Row({
                 align:"start", 
@@ -331,7 +330,6 @@ function ChatInterphase(){
         )
 
         if(allMessages[newMsgID]){
-            console.log("oldmsg", $$(newMsgID).Element)
             $$(newMsgID).Element.innerHTML = newMsgElement.innerHTML
         }else{
             newMsgElement.id = newMsgID
@@ -352,7 +350,7 @@ function ChatInterphase(){
     });
 }
 
-function ChatMessageTemplate({message, type, id, senderName, senderAvatar, timestamp, meSender}){
+function ChatMessageTemplate({message, type, id, senderName, senderAvatar, timestamp, meSender, sent}){
     var msgBody;
     if(type == "text"){
         msgBody = (
@@ -391,7 +389,7 @@ function ChatMessageTemplate({message, type, id, senderName, senderAvatar, times
                                 crossAlign:"end"
                             },[
                                 msgBody,
-                                Text({text:"/"})
+                                Text({text:(sent ? "✅" : "☑")})
                             ])
                         ])
                     ]

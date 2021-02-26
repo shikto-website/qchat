@@ -32,7 +32,6 @@ var loginScreen = new Screen("loginScreen", layout.loginScreen, async (data)=>{
         $$("loginButtonText").Element.innerHTML = "Please wait";
       
         var result = await googleLogin()
-        console.log(result)
 
         if(result){
             user.avatar = result.user.photoURL
@@ -64,18 +63,24 @@ var loginScreen = new Screen("loginScreen", layout.loginScreen, async (data)=>{
 
 var chatRoomScreen = new Screen("chatRoomScreen", layout.chatRoomScreen, async()=>{
     var globalChatRoom = firebase.database().ref('global');
-    globalChatRoom.on('value', (snapshot) => {
-        console.log(snapshot.val())
-        var msgs = snapshot.val()
-        ObjectLoop(msgs, (k, v)=>{
-            UI.chatBox.addMessage({
-                id: k,
-                ...v,
-                meSender: (v.senderEmail == user.email)
-            })
-        })
-        
+    globalChatRoom.on('child_added', (snapshot) => {
+          message__(snapshot)
     })
+    globalChatRoom.on('child_changed', (snapshot) => {
+          message__(snapshot)
+    })
+  
+    function message__(snapshot){
+        var k = snapshot.key;
+        var v = snapshot.val();
+        UI.chatBox.addMessage({
+            id: k,
+            ...v,
+            meSender: (v.senderEmail == user.email),
+            sent:false
+        })
+    }  
+  
   
     $$("textBox").Element.onfocus = ()=>{
         UI.chatBox.scroll();
@@ -123,6 +128,4 @@ var btn = Button({text:"HELLO", id:"he", backgroundColor:Colors.green});
 var img_a = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80";
 var img_b = "https://hdwallpaperim.com/wp-content/uploads/2017/08/23/474024-nature-landscape-water-clouds-trees-beach-sunset-portrait_display-748x1392.jpg";
 //console.log(btn);
-
-console.timeEnd()
 
