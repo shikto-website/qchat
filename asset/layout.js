@@ -1,7 +1,7 @@
 var layout = {
     loginScreen:[
         Container({
-            width: 200
+            size:[200,200]
         },[
             Column([
                 Image({
